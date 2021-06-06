@@ -13,7 +13,7 @@ import java.io.IOException;
 public class AccessLogCassandraServiceImpl implements AccessLogService {
     private final CqlSession session = CqlSession.builder().build();
     private final AccessLogMapper accessLogMapper = new AccessLogMapperBuilder(session).build();
-    private final AccessLogDao dao = accessLogMapper.productDao(CqlIdentifier.fromCql("accesslogdb"));
+    private final AccessLogDao dao = accessLogMapper.accessLogDao(CqlIdentifier.fromCql("accesslogdb"));
 
     public AccessLogCassandraServiceImpl() {
     }

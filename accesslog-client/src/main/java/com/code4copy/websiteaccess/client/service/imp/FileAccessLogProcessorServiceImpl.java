@@ -18,12 +18,10 @@ import java.util.concurrent.*;
 
 public class FileAccessLogProcessorServiceImpl implements AccessLogProcessorService {
     private final ExecutorService executorService;
-    private final AccessLogService accessLogService;
     private final List<Path> files;
     private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss");
 
-    public FileAccessLogProcessorServiceImpl(final AccessLogService accessLogService, List<Path> files, int noOfThreads) {
-        this.accessLogService = accessLogService;
+    public FileAccessLogProcessorServiceImpl( List<Path> files, int noOfThreads) {
         this.files = files;
         this.executorService = Executors.newFixedThreadPool(noOfThreads);
     }
@@ -33,7 +31,7 @@ public class FileAccessLogProcessorServiceImpl implements AccessLogProcessorServ
 
         Collection<Future<?>> futures = new LinkedList<>();
         for (Path file : this.files) {
-            ProcessTask processTask = new ProcessTask(file, this.accessLogService);
+            ProcessTask processTask = new ProcessTask(file, new AccessLogCassandraServiceImpl());
             futures.add(this.executorService.submit(processTask));
         }
         int i =0;
@@ -113,6 +111,7 @@ public class FileAccessLogProcessorServiceImpl implements AccessLogProcessorServ
 
             } finally {
                 it.close();
+                this.accessLogService.close();
             }
             return true;
         }
@@ -122,6 +121,4 @@ public class FileAccessLogProcessorServiceImpl implements AccessLogProcessorServ
             System.out.println(line);
         }
     }
-
-
 }

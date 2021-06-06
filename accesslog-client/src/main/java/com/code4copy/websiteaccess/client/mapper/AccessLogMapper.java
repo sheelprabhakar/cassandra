@@ -9,5 +9,5 @@ import com.datastax.oss.driver.api.mapper.annotations.Mapper;
 @Mapper
 public interface AccessLogMapper {
     @DaoFactory
-    AccessLogDao productDao(@DaoKeyspace CqlIdentifier keyspace);
+    AccessLogDao accessLogDao(@DaoKeyspace CqlIdentifier keyspace);
 }

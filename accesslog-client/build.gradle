@@ -14,15 +14,11 @@ dependencies {
     implementation group: 'com.datastax.oss', name: 'java-driver-core', version: '4.11.1'
     // https://mvnrepository.com/artifact/com.datastax.oss/java-driver-query-builder
     implementation group: 'com.datastax.oss', name: 'java-driver-query-builder', version: '4.11.1'
-
     // https://mvnrepository.com/artifact/com.datastax.oss/java-driver-mapper-runtime
     implementation group: 'com.datastax.oss', name: 'java-driver-mapper-runtime', version: '4.11.1'
-
     annotationProcessor group: 'com.datastax.oss', name: 'java-driver-mapper-processor', version: '4.11.1'
-
     // https://mvnrepository.com/artifact/commons-io/commons-io
     implementation group: 'commons-io', name: 'commons-io', version: '2.9.0'
-
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'

@@ -24,18 +24,6 @@ public class AccessLog {
         this.id = UUID.randomUUID();
     }
 
-    public AccessLog(UUID id, String ip, Instant time, String method, String url, int status, long length, String referral, String client) {
-        this.id = id;
-        this.ip = ip;
-        this.time = time;
-        this.method = method;
-        this.url = url;
-        this.status = status;
-        this.length = length;
-        this.referral = referral;
-        this.client = client;
-    }
-
     public UUID getId() {
         return id;
     }
